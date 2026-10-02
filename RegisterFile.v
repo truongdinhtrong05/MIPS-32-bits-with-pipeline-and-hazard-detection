@@ -1,4 +1,4 @@
-module RegisterFile (
+module RegisterFile(
     input clk,
     input [4:0] rs1,
     input [4:0] rs2,
@@ -32,5 +32,4 @@ always @(*) begin
         readdata2 = register[rs2];
     end
 end
-
 endmodule
