@@ -1,20 +1,20 @@
-module Controller (
+module Controller(
     input [5:0] inst,
     output reg regdst,
     output reg branch,
-	 output reg bne,
+    output reg bne,
     output reg memread,
     output reg memtoreg,
     output reg [2:0] aluop,
     output reg memwrite,
     output reg alusrc,
     output reg regwrite,
-	 output reg jump
+    output reg jump
 );
 
 always @(*) begin
     case (inst)
-        // R-Type (add, sub, and, or, nor, xor, slt, mfhi, mflo, mult, div)
+        // R-type
         6'h00: begin
             regdst = 1;
             branch = 0;
@@ -24,8 +24,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 0;
             regwrite = 1;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // lw
         6'h23: begin
@@ -37,8 +37,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 1;
             regwrite = 1;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // sw
         6'h2B: begin
@@ -50,8 +50,8 @@ always @(*) begin
             memwrite = 1;
             alusrc = 1;
             regwrite = 0;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // beq
         6'h04: begin
@@ -63,8 +63,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 0;
             regwrite = 0;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // bne
         6'h05: begin
@@ -76,8 +76,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 0;
             regwrite = 0;
-				jump = 0;
-				bne = 1;
+            jump = 0;
+            bne = 1;
         end
         // addi
         6'h08: begin
@@ -89,8 +89,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 1;
             regwrite = 1;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // li / addiu
         6'h09: begin
@@ -102,8 +102,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 1;
             regwrite = 1;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // andi
         6'h0C: begin
@@ -115,8 +115,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 1;
             regwrite = 1;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // ori
         6'h0D: begin
@@ -128,8 +128,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 1;
             regwrite = 1;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
         // jump
         6'h02: begin
@@ -141,8 +141,8 @@ always @(*) begin
             memwrite = 0;
             alusrc = 0;
             regwrite = 0;
-				jump = 1;
-				bne = 0;
+            jump = 1;
+            bne = 0;
         end
         default: begin
             regdst = 0;
@@ -153,10 +153,9 @@ always @(*) begin
             memwrite = 0;
             alusrc = 0;
             regwrite = 0;
-				jump = 0;
-				bne = 0;
+            jump = 0;
+            bne = 0;
         end
     endcase
 end
-
 endmodule
